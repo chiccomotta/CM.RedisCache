@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 using System.Collections;
 using System.Diagnostics;
@@ -312,16 +310,5 @@ public class LocalCollectionExpander : ExpressionVisitor
         {
             return "{" + this.ToConcatenatedString(t => t.ToString(), "|") + "}";
         }
-    }
-}
-
-
-public static class AppBuilderExtensions
-{
-    public static IApplicationBuilder UseRedisCache(this IApplicationBuilder app)
-    {
-        // Setto il multiplexer nella classe statica RedisCache
-        RedisCache.Multiplexer = app.ApplicationServices.GetService<IConnectionMultiplexer>() ?? throw new InvalidOperationException("Redis Multiplexer is not defined");
-        return app;
     }
 }
