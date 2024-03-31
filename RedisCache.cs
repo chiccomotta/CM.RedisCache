@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
+using System.Collections;
 using System.Linq.Expressions;
 using System.Text;
 using System.Text.Json;
-using Microsoft.EntityFrameworkCore;
-using StackExchange.Redis;
 using static System.Security.Cryptography.MD5;
 
 namespace CM.RedisCache;
 
 public static class RedisCache
 {
-    public static IConnectionMultiplexer Multiplexer { get; set; }
+    public static IConnectionMultiplexer? Multiplexer { get; set; }
 
     public static async Task<IEnumerable<T>> GetFromCacheAsync<T>(this IQueryable<T> query, int hours)
     {
@@ -91,7 +90,7 @@ public static class RedisCache
 /// <summary>
 /// Enables the partial evaluation of queries.
 /// </summary>
-public static class Evaluator
+internal static class Evaluator
 {
     /// <summary>
     /// Performs evaluation & replacement of independent sub-trees
@@ -200,7 +199,7 @@ public static class Evaluator
     }
 }
 
-public static class Utility
+internal static class Utility
 {
     /// <summary>
     /// Creates an MD5 fingerprint of the string.
@@ -242,7 +241,7 @@ public static class Utility
 /// <summary>
 /// Enables cache key support for local collection values.
 /// </summary>
-public class LocalCollectionExpander : ExpressionVisitor
+internal class LocalCollectionExpander : ExpressionVisitor
 {
     public static Expression Rewrite(Expression expression)
     {
