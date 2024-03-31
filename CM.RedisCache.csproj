@@ -9,6 +9,8 @@
     <Copyright>(C) Cristiano Motta 2024</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/chiccomotta/CM.RedisCache</RepositoryUrl>
+    <PackageTags>redis;cache;efcore;net8</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
