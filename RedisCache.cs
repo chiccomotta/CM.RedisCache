@@ -13,11 +13,12 @@ public static class RedisCache
 {
     public static IConnectionMultiplexer Multiplexer { get; set; }
 
-    /// <summary>
-    /// Returns the result of the query; if possible from the cache, otherwise
-    /// the query is materialized and the result cached before being returned.
-    /// </summary>
-    public static async Task<IEnumerable<T>> FromCacheAsync<T>(this IQueryable<T> query, TimeSpan expiry)
+    public static async Task<IEnumerable<T>> GetFromCacheAsync<T>(this IQueryable<T> query, int hours)
+    {
+        return await GetFromCacheAsync(query, TimeSpan.FromHours(hours));
+    }
+
+    public static async Task<IEnumerable<T>> GetFromCacheAsync<T>(this IQueryable<T> query, TimeSpan expiry)
     {
         // Multiplexer not null check
         ArgumentNullException.ThrowIfNull(Multiplexer);
@@ -30,10 +31,10 @@ public static class RedisCache
 
         var value = db.StringGet(key);
 
-        // Try to get the query result from the cache
+        // Try to get the query result from the cache otherwise make query
         if (value.IsNullOrEmpty)
         {
-            // materialize the query
+            // Materialize the query
             var result = await query.ToListAsync();
 
             // Put result in cache and return

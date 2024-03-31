@@ -6,10 +6,9 @@ namespace CM.RedisCache;
 
 public static class AppBuilderExtensions
 {
-    public static IApplicationBuilder UseRedisCache(this IApplicationBuilder app)
+    public static void UseRedisCache(this IApplicationBuilder app)
     {
         // Setto il multiplexer nella classe statica RedisCache
         RedisCache.Multiplexer = app.ApplicationServices.GetService<IConnectionMultiplexer>() ?? throw new InvalidOperationException("Redis Multiplexer is not defined");
-        return app;
     }
 }
