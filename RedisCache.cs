@@ -29,6 +29,7 @@ public static class RedisCache
         // Use the working redis database
         var db = Multiplexer.GetDatabase();
 
+        // Get value from Redis cache
         var value = db.StringGet(key);
 
         // Try to get the query result from the cache otherwise make query
@@ -50,8 +51,6 @@ public static class RedisCache
     /// </summary>
     public static string GetCacheKey(this IQueryable query)
     {
-        Debug.WriteLine(Multiplexer.ClientName);
-
         var expression = query.Expression;
 
         // locally evaluate as much of the query as possible
@@ -66,7 +65,7 @@ public static class RedisCache
         // the key is potentially very long, so use md5 fingerprint (fine if the query result data isn't critically sensitive)
         key = key.ToMd5();
 
-        return key;
+        return $"Q.{key}";
     }
 
     private static Func<Expression, bool> CanBeEvaluatedLocally

@@ -8,7 +8,7 @@ public static class AppBuilderExtensions
 {
     public static void UseRedisCache(this IApplicationBuilder app)
     {
-        // Setto il multiplexer nella classe statica RedisCache
+        // Set multiplexer in the static class RedisCache
         RedisCache.Multiplexer = app.ApplicationServices.GetService<IConnectionMultiplexer>() ?? throw new InvalidOperationException("Redis Multiplexer is not defined");
     }
 }
