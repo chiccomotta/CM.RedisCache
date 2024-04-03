@@ -11,6 +11,7 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/chiccomotta/CM.RedisCache</RepositoryUrl>
     <PackageTags>redis;cache;efcore;net8</PackageTags>
+    <PackageProjectUrl>https://github.com/chiccomotta/CM.RedisCache</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
