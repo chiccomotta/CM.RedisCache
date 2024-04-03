@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/chiccomotta/CM.RedisCache</RepositoryUrl>
     <PackageTags>redis;cache;efcore;net8</PackageTags>
     <PackageProjectUrl>https://github.com/chiccomotta/CM.RedisCache</PackageProjectUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
