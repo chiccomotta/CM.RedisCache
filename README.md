@@ -43,7 +43,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 [HttpGet]
 public async Task<IActionResult> GetTravels()
 {
-	var nations = new String[]Milano_2038#!$
+	var nations = new String[]
 	{
 	 "Italy", "France", "Japan"
 	};
