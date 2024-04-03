@@ -81,6 +81,9 @@ public static class RedisCache
                 if (typeof(IQueryable).IsAssignableFrom(expression.Type))
                     return false;
 
+                if (expression.NodeType == ExpressionType.New)
+                    return false;
+
                 return true;
             };
         }
