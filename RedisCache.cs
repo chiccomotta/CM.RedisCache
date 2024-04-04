@@ -12,12 +12,12 @@ public static class RedisCache
 {
     public static IConnectionMultiplexer? Multiplexer { get; set; }
 
-    public static async Task<IEnumerable<T>> GetFromCacheAsync<T>(this IQueryable<T> query, int hours)
+    public static async Task<List<T>> GetFromCacheAsync<T>(this IQueryable<T> query, int hours)
     {
         return await GetFromCacheAsync(query, TimeSpan.FromHours(hours));
     }
 
-    public static async Task<IEnumerable<T>> GetFromCacheAsync<T>(this IQueryable<T> query, TimeSpan expiry)
+    public static async Task<List<T>> GetFromCacheAsync<T>(this IQueryable<T> query, TimeSpan expiry)
     {
         // Multiplexer not null check
         ArgumentNullException.ThrowIfNull(Multiplexer);
