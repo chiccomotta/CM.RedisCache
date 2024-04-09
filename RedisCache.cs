@@ -12,6 +12,24 @@ public static class RedisCache
 {
     public static IConnectionMultiplexer? Multiplexer { get; set; }
 
+    public static void HashSet(string key, HashEntry[] entries)
+    {
+        // Multiplexer not null check
+        ArgumentNullException.ThrowIfNull(Multiplexer);
+
+        var db = Multiplexer.GetDatabase();
+        db.HashSet(key, entries);
+    }
+
+    public static void HashSet(string key, object obj)
+    {
+        // Multiplexer not null check
+        ArgumentNullException.ThrowIfNull(Multiplexer);
+
+        var db = Multiplexer.GetDatabase();
+        db.HashSet(key, HashSetBuilder.New().AddObject(obj).Build());
+    }
+
     public static async Task<List<T>> GetFromCacheAsync<T>(this IQueryable<T> query, int hours)
     {
         return await GetFromCacheAsync(query, TimeSpan.FromHours(hours));
