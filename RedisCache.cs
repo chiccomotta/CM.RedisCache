@@ -27,7 +27,18 @@ public static class RedisCache
         ArgumentNullException.ThrowIfNull(Multiplexer);
 
         var db = Multiplexer.GetDatabase();
-        db.HashSet(key, HashSetBuilder.New().AddObject(obj).Build());
+        db.HashSet(key, HashSetBuilder.New().Add(obj).Build());
+    }
+
+    public static Dictionary<string, string> HashSetGetAll(string key)
+    {
+        // Multiplexer not null check
+        ArgumentNullException.ThrowIfNull(Multiplexer);
+
+        var db = Multiplexer.GetDatabase();
+        var list = db.HashGetAll(key);
+
+        return list.ToDictionary(x => x.Name.ToString(), x => x.Value.ToString());
     }
 
     public static async Task<List<T>> GetFromCacheAsync<T>(this IQueryable<T> query, int hours)

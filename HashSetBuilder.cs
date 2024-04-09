@@ -17,7 +17,7 @@ public class HashSetBuilder
         return this;
     }
 
-    public HashSetBuilder AddObject(object obj)
+    public HashSetBuilder Add(object obj)
     {
         var properties = ClassAttributesReader.BuildKeyValuePair(obj);
 
