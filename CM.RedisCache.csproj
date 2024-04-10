@@ -10,9 +10,9 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/chiccomotta/CM.RedisCache</RepositoryUrl>
-    <PackageTags>redis;cache;efcore;net8</PackageTags>
+    <PackageTags>redis;cache;efcore;net8;c#;asp.net</PackageTags>
     <PackageProjectUrl>https://github.com/chiccomotta/CM.RedisCache</PackageProjectUrl>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Description>CM.RedisCache is a simple cache library that uses Redis as database, implemented as an extension method over IQueryable interface.
 </Description>
   </PropertyGroup>

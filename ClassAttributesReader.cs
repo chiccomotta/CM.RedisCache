@@ -3,9 +3,9 @@ using System.Reflection;
 
 namespace CM.RedisCache;
 
-public sealed class ClassAttributesReader
+internal sealed class ClassAttributesReader
 {
-    public static List<KeyValuePair<string, string>> BuildKeyValuePair<T>(T instance) where T : class, new()
+    internal static List<KeyValuePair<string, string>> BuildKeyValuePair<T>(T instance) where T : class, new()
     {
         var keyValuePairs = new List<KeyValuePair<string, string>>();
 

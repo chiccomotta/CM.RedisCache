@@ -30,6 +30,16 @@ public static class RedisCache
         db.HashSet(key, HashSetBuilder.New().Add(obj).Build());
     }
 
+    public static void HashSetDelete(string key)
+    {
+        // Multiplexer not null check
+        ArgumentNullException.ThrowIfNull(Multiplexer);
+
+        var db = Multiplexer.GetDatabase();
+        // Deleting all hash entries within the hashset
+        db.HashDelete(key, db.HashKeys(key));
+    }
+
     public static Dictionary<string, string> HashSetGetAll(string key)
     {
         // Multiplexer not null check
