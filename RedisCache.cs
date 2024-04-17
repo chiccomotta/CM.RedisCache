@@ -12,6 +12,9 @@ public static class RedisCache
 {
     public static IConnectionMultiplexer? Multiplexer { get; set; }
 
+    // Key name convention
+    private const string keyPrefix = "Q:";
+
     public static void HashSet(string key, HashEntry[] entries)
     {
         // Multiplexer not null check
@@ -103,7 +106,7 @@ public static class RedisCache
         // the key is potentially very long, so use md5 fingerprint (fine if the query result data isn't critically sensitive)
         key = key.ToMd5();
 
-        return $"Q.{key}";
+        return $"{keyPrefix}{key}";
     }
 
     private static Func<Expression, bool> CanBeEvaluatedLocally
